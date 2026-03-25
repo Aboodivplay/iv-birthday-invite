@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #000; /* Backup color */
+    background-color: #000;
     color: #ff4757;
     font-family: 'Courier New', Courier, monospace;
     overflow: hidden;
@@ -17,10 +17,10 @@ body, html {
     min-height: 100vh;
     width: auto;
     height: auto;
-    z-index: -2; /* Pushes video behind everything */
+    z-index: -2;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    background-size: cover;
+    display: block !important; /* Forces it to show after JS trigger */
 }
 
 .overlay {
@@ -29,14 +29,12 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%);
-    z-index: -1; /* Sits between video and text */
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
+    z-index: -1;
 }
 
 #entry-screen {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background: #000;
@@ -44,6 +42,17 @@ body, html {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+}
+
+#start-btn {
+    padding: 20px 40px;
+    background: transparent;
+    color: #ff4757;
+    border: 2px solid #ff4757;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff4757;
+    font-weight: bold;
 }
 
 .content {
@@ -56,17 +65,43 @@ body, html {
     z-index: 10;
 }
 
-/* Unique Timer Style */
-#countdown { display: flex; gap: 15px; margin-top: 30px; }
+.glitch {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 20px;
+    animation: glitch-anim 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+#countdown { display: flex; gap: 15px; }
 
 .time-box {
     background: rgba(255, 71, 87, 0.1);
     border: 1px solid #ff4757;
     padding: 15px;
-    min-width: 75px;
+    min-width: 70px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
 }
 
-.time-box span { font-size: 2.2rem; color: #fff; display: block; }
-.time-box p { font-size: 0.7rem; color: #ff4757; margin: 0; }
+.time-box span { font-size: 2rem; color: #fff; display: block; }
+.time-box p { font-size: 0.6rem; margin: 0; }
+
+#mute-toggle {
+    margin-top: 40px;
+    background: transparent;
+    color: #ff4757;
+    border: 1px solid #ff4757;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.blink { animation: blinker 1s linear infinite; text-align: center; margin-top: 10px; font-size: 0.8rem; }
+@keyframes blinker { 50% { opacity: 0; } }
