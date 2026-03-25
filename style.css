@@ -13,15 +13,13 @@ body, html {
     position: fixed;
     top: 50%;
     left: 50%;
-    min-width: 100vw; 
-    min-height: 100vh;
-    width: auto;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
     z-index: -2;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    /* This ensures it isn't hidden by a black placeholder */
-    background: black; 
+    background: #000;
+    display: block !important;
 }
 
 .overlay {
@@ -30,14 +28,13 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%);
     z-index: -1;
 }
 
 #entry-screen {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: #000;
     display: flex;
     justify-content: center;
@@ -46,14 +43,14 @@ body, html {
 }
 
 #start-btn {
-    padding: 20px 40px;
+    padding: 15px 35px;
     background: transparent;
     color: #ff4757;
     border: 2px solid #ff4757;
     font-size: 1.5rem;
     cursor: pointer;
     box-shadow: 0 0 15px #ff4757;
-    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .content {
@@ -64,27 +61,29 @@ body, html {
     height: 100vh;
 }
 
-#countdown { display: flex; gap: 15px; margin-top: 20px; }
+.glitch { font-size: 2.8rem; text-transform: uppercase; margin-bottom: 20px; }
+
+#countdown { display: flex; gap: 15px; }
 
 .time-box {
-    background: rgba(255, 71, 87, 0.1);
     border: 1px solid #ff4757;
     padding: 15px;
-    min-width: 70px;
+    min-width: 80px;
     text-align: center;
+    background: rgba(255, 71, 87, 0.05);
 }
 
-.time-box span { font-size: 2.2rem; color: #fff; display: block; }
-.time-box p { font-size: 0.6rem; margin: 0; }
-
-.blink { animation: blinker 1s linear infinite; text-align: center; margin-top: 10px; font-size: 0.8rem; }
-@keyframes blinker { 50% { opacity: 0; } }
+.time-box span { font-size: 2.5rem; color: #fff; display: block; }
+.time-box p { font-size: 0.7rem; margin: 0; }
 
 #mute-toggle {
-    margin-top: 40px;
+    margin-top: 50px;
     background: transparent;
-    color: #ff4757;
     border: 1px solid #ff4757;
+    color: #ff4757;
     padding: 10px 20px;
     cursor: pointer;
 }
+
+.blink { animation: blinker 1s linear infinite; text-align: center; margin-top: 15px; }
+@keyframes blinker { 50% { opacity: 0; } }
