@@ -5,15 +5,14 @@ const entryScreen = document.getElementById("entry-screen");
 const mainUI = document.getElementById("main-ui");
 const muteToggle = document.getElementById("mute-toggle");
 
-// BOOT SYSTEM
+// This ensures the audio starts UNMUTED once they enter
 startBtn.addEventListener("click", () => {
-    video.muted = false; // Permitted after click
+    video.muted = false; 
     video.play();
     entryScreen.style.display = "none";
     mainUI.style.display = "flex";
 });
 
-// TIMER LOGIC
 function updateTimer() {
     const now = new Date().getTime();
     const diff = targetDate - now;
