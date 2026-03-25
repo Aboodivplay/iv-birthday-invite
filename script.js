@@ -6,23 +6,18 @@ const mainUI = document.getElementById("main-ui");
 const muteToggle = document.getElementById("mute-toggle");
 
 startBtn.addEventListener("click", () => {
-    // The "Brute Force" Play: 
-    // We unmute and play at the same time.
+    // 1. Unmute the video that is already 'playing' in the background
     video.muted = false;
     
-    const playPromise = video.play();
-
-    if (playPromise !== undefined) {
-        playPromise.then(_ => {
-            entryScreen.style.display = "none";
-            mainUI.style.display = "flex";
-        }).catch(error => {
-            // Fallback if the video still refuses
-            console.log("Video playback failed: ", error);
-            entryScreen.style.display = "none";
-            mainUI.style.display = "flex";
-        });
-    }
+    // 2. Refresh the play state for Brave
+    video.play().then(() => {
+        entryScreen.style.display = "none";
+        mainUI.style.display = "flex";
+    }).catch(err => {
+        console.error("Brave blocked the video feed:", err);
+        entryScreen.style.display = "none";
+        mainUI.style.display = "flex";
+    });
 });
 
 function updateTimer() {
