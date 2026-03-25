@@ -1,39 +1,11 @@
 const targetDate = new Date("April 5, 2026 00:00:00").getTime();
 const video = document.getElementById("bg-video");
-const startBtn = document.getElementById("start-btn");
 const muteToggle = document.getElementById("mute-toggle");
-const entryScreen = document.getElementById("entry-screen");
-const mainContent = document.getElementById("main-content");
 
-// Unmute and Start
-startBtn.addEventListener("click", () => {
-    video.muted = false;
-    video.play();
-    entryScreen.style.display = "none";
-    mainContent.style.display = "flex";
-});
-
-// Toggle Sound
-muteToggle.addEventListener("click", () => {
-    if (video.muted) {
-        video.muted = false;
-        muteToggle.innerText = "🔇 Mute Audio";
-    } else {
-        video.muted = true;
-        muteToggle.innerText = "🔊 Enable Audio";
-    }
-});
-
-// Timer logic
+// Timer Logic
 setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
-
-    if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "<h2>HAPPY BIRTHDAY!</h2>";
-        return;
-    }
-
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -44,3 +16,14 @@ setInterval(() => {
     document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
     document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
 }, 1000);
+
+// Audio Toggle
+muteToggle.addEventListener("click", () => {
+    if (video.muted) {
+        video.muted = false;
+        muteToggle.innerText = "🔇 MUTE AUDIO";
+    } else {
+        video.muted = true;
+        muteToggle.innerText = "🔊 ENABLE AUDIO";
+    }
+});
