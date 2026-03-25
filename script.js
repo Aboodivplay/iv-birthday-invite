@@ -5,21 +5,18 @@ const entryScreen = document.getElementById("entry-screen");
 const mainUI = document.getElementById("main-ui");
 const muteToggle = document.getElementById("mute-toggle");
 
+// Function to handle the start
 startBtn.addEventListener("click", () => {
-    // 1. Unmute the video that is already 'playing' in the background
+    // 1. Force Video to Unmute and Play
     video.muted = false;
-    
-    // 2. Refresh the play state for Brave
-    video.play().then(() => {
-        entryScreen.style.display = "none";
-        mainUI.style.display = "flex";
-    }).catch(err => {
-        console.error("Brave blocked the video feed:", err);
-        entryScreen.style.display = "none";
-        mainUI.style.display = "flex";
-    });
+    video.play();
+
+    // 2. Switch Screens
+    entryScreen.style.display = "none";
+    mainUI.style.display = "block";
 });
 
+// Countdown Timer
 function updateTimer() {
     const now = new Date().getTime();
     const diff = targetDate - now;
@@ -34,7 +31,8 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
+// Mute/Unmute Toggle
 muteToggle.addEventListener("click", () => {
     video.muted = !video.muted;
-    muteToggle.innerText = video.muted ? "🔊 UNMUTE SYSTEM" : "🔇 MUTE SYSTEM";
+    muteToggle.innerText = video.muted ? "🔊 UNMUTE AUDIO" : "🔇 MUTE AUDIO";
 });
