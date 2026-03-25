@@ -3,16 +3,17 @@ const video = document.getElementById("bg-video");
 const startBtn = document.getElementById("start-btn");
 const entryScreen = document.getElementById("entry-screen");
 const mainUI = document.getElementById("main-ui");
+const muteToggle = document.getElementById("mute-toggle");
 
-// 1. The MAGIC FIX for sound and background
+// BOOT SYSTEM
 startBtn.addEventListener("click", () => {
-    video.muted = false; // Now allowed because user clicked
+    video.muted = false; // Permitted after click
     video.play();
     entryScreen.style.display = "none";
     mainUI.style.display = "flex";
 });
 
-// 2. Timer Update
+// TIMER LOGIC
 function updateTimer() {
     const now = new Date().getTime();
     const diff = targetDate - now;
@@ -26,3 +27,8 @@ function updateTimer() {
 
 setInterval(updateTimer, 1000);
 updateTimer();
+
+muteToggle.addEventListener("click", () => {
+    video.muted = !video.muted;
+    muteToggle.innerText = video.muted ? "🔊 UNMUTE SYSTEM" : "🔇 MUTE SYSTEM";
+});
