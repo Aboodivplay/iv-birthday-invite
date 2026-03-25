@@ -5,11 +5,10 @@ const muteToggle = document.getElementById("mute-toggle");
 const entryScreen = document.getElementById("entry-screen");
 const mainContent = document.getElementById("main-content");
 
-// Start Invitation & Unmute
+// Unmute and Start
 startBtn.addEventListener("click", () => {
     video.muted = false;
     video.play();
-    entryScreen.style.fadeOut = "slow"; // Visual polish
     entryScreen.style.display = "none";
     mainContent.style.display = "flex";
 });
@@ -18,14 +17,14 @@ startBtn.addEventListener("click", () => {
 muteToggle.addEventListener("click", () => {
     if (video.muted) {
         video.muted = false;
-        muteToggle.innerText = "静 Mute Audio";
+        muteToggle.innerText = "🔇 Mute Audio";
     } else {
         video.muted = true;
         muteToggle.innerText = "🔊 Enable Audio";
     }
 });
 
-// Timer Logic
+// Timer logic
 setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
