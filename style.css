@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
     background-color: #000;
     color: white;
     overflow: hidden;
@@ -19,7 +19,7 @@ body, html {
     height: auto;
     z-index: -2;
     transform: translate(-50%, -50%);
-    object-fit: cover; /* This stops it from being a small black box */
+    object-fit: cover; /* Prevents black bars */
 }
 
 .overlay {
@@ -41,6 +41,12 @@ body, html {
     text-align: center;
 }
 
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
 #countdown {
     display: flex;
     gap: 15px;
@@ -51,17 +57,26 @@ body, html {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
+.time-box span { font-size: 2.2rem; font-weight: bold; display: block; }
+.time-box p { margin: 0; font-size: 0.8rem; text-transform: uppercase; }
+
 #mute-toggle {
-    padding: 15px 40px;
+    padding: 18px 45px;
     font-size: 1.2rem;
     background: #ff4757;
     color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
     font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
+    transition: 0.3s;
+}
+
+#mute-toggle:hover {
+    transform: scale(1.05);
 }
