@@ -1,3 +1,5 @@
+* { box-sizing: border-box; }
+
 body, html {
     margin: 0;
     padding: 0;
@@ -7,6 +9,9 @@ body, html {
     color: #ff4757;
     font-family: 'Courier New', Courier, monospace;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #bg-video {
@@ -17,17 +22,12 @@ body, html {
     height: 100vh;
     z-index: -2;
     transform: translate(-50%, -50%);
-    object-fit: cover;
-    background: #000;
-    display: block !important;
+    object-fit: cover; /* This prevents the black bars */
 }
 
 .overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%);
     z-index: -1;
 }
@@ -43,47 +43,65 @@ body, html {
 }
 
 #start-btn {
-    padding: 15px 35px;
+    padding: 15px 30px;
     background: transparent;
     color: #ff4757;
     border: 2px solid #ff4757;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 5vw, 1.5rem);
     cursor: pointer;
     box-shadow: 0 0 15px #ff4757;
-    font-weight: bold;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 10;
 }
 
-.glitch { font-size: 2.8rem; text-transform: uppercase; margin-bottom: 20px; }
+.glitch {
+    font-size: clamp(1.5rem, 8vw, 3rem);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
 
-#countdown { display: flex; gap: 15px; }
+/* THE TIMER MOBILE FIX */
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
 
 .time-box {
+    flex: 1; /* Makes boxes scale equally */
+    background: rgba(255, 71, 87, 0.1);
     border: 1px solid #ff4757;
-    padding: 15px;
-    min-width: 80px;
-    text-align: center;
-    background: rgba(255, 71, 87, 0.05);
+    padding: 10px 5px;
+    min-width: 0; /* Allows shrinking on mobile */
 }
 
-.time-box span { font-size: 2.5rem; color: #fff; display: block; }
-.time-box p { font-size: 0.7rem; margin: 0; }
+.time-box span {
+    font-size: clamp(1.2rem, 6vw, 2.5rem);
+    color: #fff;
+    display: block;
+}
+
+.time-box p {
+    font-size: clamp(0.5rem, 3vw, 0.7rem);
+    margin: 0;
+}
 
 #mute-toggle {
-    margin-top: 50px;
-    background: transparent;
-    border: 1px solid #ff4757;
-    color: #ff4757;
+    margin-top: 30px;
+    background: #ff4757;
+    color: #000;
+    border: none;
     padding: 10px 20px;
+    font-weight: bold;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-.blink { animation: blinker 1s linear infinite; text-align: center; margin-top: 15px; }
+.blink { animation: blinker 1s linear infinite; margin-top: 15px; font-size: 0.8rem; }
 @keyframes blinker { 50% { opacity: 0; } }
