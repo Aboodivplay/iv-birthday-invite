@@ -6,6 +6,12 @@ const muteToggle = document.getElementById("mute-toggle");
 setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>PARTY TIME!</h2>";
+        return;
+    }
+
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -17,13 +23,13 @@ setInterval(() => {
     document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
 }, 1000);
 
-// Audio Toggle
+// Audio Control
 muteToggle.addEventListener("click", () => {
     if (video.muted) {
         video.muted = false;
         muteToggle.innerText = "🔇 MUTE AUDIO";
     } else {
         video.muted = true;
-        muteToggle.innerText = "🔊 ENABLE AUDIO";
+        muteToggle.innerText = "🔊 UNMUTE AUDIO";
     }
 });
