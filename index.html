@@ -8,23 +8,42 @@
 </head>
 <body>
 
-    <video autoplay muted loop playsinline id="bg-video">
+    <video muted loop playsinline id="bg-video">
         <source src="him.mp4" type="video/mp4">
     </video>
 
     <div class="overlay"></div>
 
-    <div class="content">
-        <h1>Counting Down to aboodivplay Birthday!</h1>
+    <div id="entry-screen">
+        <div class="glitch-wrapper">
+            <button id="start-btn">INITIALIZE SYSTEM</button>
+            <p>CRITICAL: AUDIO REQUIRED</p>
+        </div>
+    </div>
+
+    <div class="content" id="main-ui" style="display: none;">
+        <h1 class="glitch">aboodivplay Birthday</h1>
         
         <div id="countdown">
-            <div class="time-box"><span id="days">00</span><p>Days</p></div>
-            <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
-            <div class="time-box"><span id="minutes">00</span><p>Mins</p></div>
-            <div class="time-box"><span id="seconds">00</span><p>Secs</p></div>
+            <div class="time-box">
+                <span id="days">00</span>
+                <p>DAYS</p>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <p>HRS</p>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <p>MIN</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <p>SEC</p>
+            </div>
         </div>
         
-        <button id="mute-toggle">🔊 ENABLE AUDIO</button>
+        <button id="mute-toggle">🔊 SOUND ON</button>
     </div>
 
     <script src="script.js"></script>
